@@ -1,0 +1,312 @@
+// WELCOME TO STYLE.SCSS
+
+////////////////////////////////////////////
+///// 		IMPORTS
+///////////////////////////////////////////////
+
+// @import url(./_normalize.scss);
+// @import url(./_responsive.scss);
+// @import url(./columns.scss);
+// @import url(./grid.scss);
+
+@import 'normalize';
+@import 'grid';
+@import 'responsive';
+// @import 'variables.global.041415.1';
+@import 'columns';
+
+// the _ threw off the import
+// @import '_normalize.scss';
+// @import '_responsive.scss';
+// @import 'columns.scss';
+// @import 'grid.scss';
+
+///////////////////////////////////////////////
+///// 		END IMPORTS
+///////////////////////////////////////////////
+
+////////////////////////////////////////////
+///// 		SETUP
+///////////////////////////////////////////////
+
+// article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */
+// input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+
+// .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+
+// * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+
+///////////////////////////////////////////////
+///// 		END SETUP
+///////////////////////////////////////////////
+
+
+
+body{
+	// position: relative;
+	// height: 100vh;
+	position: relative;
+
+	background: black;
+}
+
+section.rings {
+	position: relative;
+	height: 100vh;
+	width:100%;
+}
+
+.small .image img{
+	border-radius: 50%;
+	// width: 100%;
+	max-width: 100%;
+	cursor: pointer;
+}
+
+
+
+////////////////////////////////////////////
+///// 		SUN
+///////////////////////////////////////////////
+
+section.sun {
+	margin:0;
+	padding:0;
+	// border: 5px solid orange;
+	position: absolute;
+
+	// non-flexbox centre method
+	// top: 50%;
+	// top: calc(50% - 100px);
+	// left: calc(50% - 100px);
+	// top: 50%;
+	// transform: translateY(-50%);
+
+	// width: 100%;
+	// height: 100vh;
+	
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+
+	display:flex;
+	flex-flow: column;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
+
+///////////////////////////////////////////////
+///// 		END SUN
+///////////////////////////////////////////////
+
+
+
+// PLANETS  ------------------------------------------------
+
+.planet {
+	margin:0;
+	padding:0;
+	position: absolute;
+}
+
+// .planet.mercury .big.modal {
+// 	position: absolute;
+// 	top: 40%;
+// 	left: 40%;
+	
+// 	// top:0;
+// 	// bottom:0;
+// 	// left:0;
+// 	// right:0;
+
+// 	// TESTING
+// 	background: lightblue;
+// 	width: 250px;
+// 	height: 250px;
+// 	width: 100%;
+// 	height: 100vh;
+
+// 	// flexbox
+// 	// display:flex;
+// 	// flex-flow: row no-wrap;
+// 	// justify-content:center;
+// 	// align-content:center;
+// 	// align-items: flex-start;
+// 	.image{
+// 		width: 70%;
+// 		// max-width: 100%;
+// 		float: left;
+// 	}
+// 	.hiddenText{
+// 		width: 30%;
+// 	}
+
+// }
+
+
+.planet.mercury {
+	top: 30%;
+	left: 53%;
+}
+
+.planet.venus {
+	top: 48%;
+	left: 71%;
+
+	// .small img {
+	// 	width: 75px;
+	// }
+}
+
+.planet.earth {
+	top: 22%;
+	left: 69%;
+
+	// .small img {
+	// 	width: 100px;
+	// }
+}
+
+.planet.mars {
+	top: 31%;
+	left: 79%;
+
+	// .small img {
+	// 	width: 150px;
+	// }
+}
+
+.planet.jupiter {
+	// top: 21%;
+	// left: 89%;
+
+	top: 0;
+	left: 77%;
+
+	// .small img {
+	// 	width: 25px;
+	// }
+}
+
+// // END PLANETS ------------------------------------------------
+
+
+
+////////////////////////////////////////////
+///// 		MODALS
+///////////////////////////////////////////////
+
+section.big.modal {
+	// positioned relative to the body
+	position: absolute;
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
+
+	// apply flexbox to the big modal to centre each of the modal entries
+	display:flex;
+	flex-flow: column;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+
+	// right now the modal box outer is a layer that is blocking the planet layer
+	// we need to put it behind the planet layer
+	// change z-index and/or its display
+	display: none;
+	z-index:-10;
+}
+
+
+section.big.modal section {
+	//flexbox the parent
+	display:flex;
+	flex-flow:row no-wrap;
+	justify-content: center;
+	align-content:center;
+	align-items:center;
+
+	background: lightgreen;
+
+	// margin: 5% 10% 10% 10%;
+	width: 80%;
+
+	// position: relative;
+
+	// DEFAULT DISPLAY STATUS
+	// in jQuery we will change the visibility of the modal
+	display: none;
+
+
+	.image {
+		flex: 1 70%;
+		margin: 0 auto;
+
+		// apply flexbox
+		display:flex;
+
+
+		img {
+			width:100%;
+		}
+	}
+
+	&.jupiterModal {}
+
+	
+
+	.hiddenText {
+		flex: 1 30%;
+		margin: 0 auto;
+		padding: 25px;
+		text-align: left;
+		h2{
+			text-align: center;
+		}
+		h3{
+			text-align: center;
+		}
+	}
+
+	// span.fa.fa-close {
+	// 	position: absolute;
+	// 	top: 0;
+	// 	right:0;
+
+	// 	border: 1px solid orange;
+	// 	border-radius: 50%;
+	// 	padding: 0.5%;
+	// }
+}
+
+// section.big.modal section:nth-child {
+// 	display:flex;
+// }
+
+section.big.modal section.jupiterModal, section.big.modal section.marsModal{
+	.hiddenText {
+		font-size: 15px;
+	}
+	.image{
+		flex: 1 60%;
+	}
+}
+
+section.big.modal section.venusModal{
+	.hiddenText{
+		font-size: 15px;
+	}
+	.image{
+		flex: 1 60%;
+	}
+}
+
+
+///////////////////////////////////////////////
+///// 		END MODALS
+///////////////////////////////////////////////
+
