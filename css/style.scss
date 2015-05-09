@@ -64,13 +64,20 @@ section.rings {
 	cursor: pointer;
 }
 
+.big.modal h2, .big.modal h3{
+	font-family: 'Oswald', sans-serif;
+}
 
+.big.modal li{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
 
 ////////////////////////////////////////////
 ///// 		SUN
 ///////////////////////////////////////////////
 
-section.sun {
+section.rings section.sun {
 	margin:0;
 	padding:0;
 	// border: 5px solid orange;
@@ -91,12 +98,19 @@ section.sun {
 	bottom:0;
 	left:0;
 
+	z-index: 10;
+
 	display:flex;
 	flex-flow: column;
 	justify-content: center;
 	align-content: center;
 	align-items: center;
+
+	img#sunImage {
+		-webkit-filter: blur(5px);
+	}
 }
+
 
 ///////////////////////////////////////////////
 ///// 		END SUN
@@ -150,11 +164,19 @@ section.sun {
 .planet.mercury {
 	top: 30%;
 	left: 53%;
+
+	// values from original though aligned along the vertical axis
+	top: 30%;
+	left: 49%;
 }
 
 .planet.venus {
 	top: 48%;
 	left: 71%;
+
+	// values from original though aligned along the vertical axis
+	top: 48%;
+	left: 47%;
 
 	// .small img {
 	// 	width: 75px;
@@ -165,6 +187,10 @@ section.sun {
 	top: 22%;
 	left: 69%;
 
+	// values from original though aligned along the vertical axis
+	top: 22%;
+	left: 47%;
+
 	// .small img {
 	// 	width: 100px;
 	// }
@@ -173,6 +199,10 @@ section.sun {
 .planet.mars {
 	top: 31%;
 	left: 79%;
+
+	// values from original though aligned along the vertical axis
+	top: 31%;
+	left: 47%;
 
 	// .small img {
 	// 	width: 150px;
@@ -185,6 +215,10 @@ section.sun {
 
 	top: 0;
 	left: 77%;
+
+	// values from original though aligned along the vertical axis
+	top: 21%;
+	left: 44%;
 
 	// .small img {
 	// 	width: 25px;
@@ -230,7 +264,6 @@ section.big.modal section {
 	align-content:center;
 	align-items:center;
 
-	background: lightgreen;
 
 	// margin: 5% 10% 10% 10%;
 	width: 80%;
@@ -288,25 +321,165 @@ section.big.modal section {
 // }
 
 section.big.modal section.jupiterModal, section.big.modal section.marsModal{
-	.hiddenText {
-		font-size: 15px;
+	.image{
+		flex: 1 60%;
+	}
+}
+
+.hiddenText {
+		font-size: 18px;
+		color:#fff;
+		font-weight: 300;
+		font-family: 'Open Sans', sans-serif;
+
+		h2{
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			font-size: 36px;
+			font-family: 'Oswald', sans-serif;
+		}
+	}
+
+section.big.modal section.venusModal{
+	.hiddenText{
+		background: rgba(159,59,31,0.3);
 	}
 	.image{
 		flex: 1 60%;
 	}
 }
 
-section.big.modal section.venusModal{
+section.big.modal section.mercuryModal {
 	.hiddenText{
-		font-size: 15px;
+		background: rgba(87,96,96, 0.3);
+		padding-bottom: 80px;
 	}
-	.image{
-		flex: 1 60%;
+}
+
+section.big.modal section.marsModal {
+	.hiddenText{
+		background: rgba(160, 49, 7, 0.3);
 	}
+}
+
+section.big.modal section.jupiterModal {
+	.hiddenText{
+		background: rgba(148, 134, 122, 0.3);
+		padding-bottom: 50px;
+	}
+}
+
+section.big.modal section.earthModal {
+	.hiddenText{
+		background: rgba(48, 94, 61, 0.3);
+	}
+}
+
+.big.modal .earthModal .image, section.big.modal section .image {
+	flex: 0 60%;
 }
 
 
 ///////////////////////////////////////////////
 ///// 		END MODALS
 ///////////////////////////////////////////////
+
+////////////////////////////////////////////
+///// 		STARRY BACKGROUND
+///////////////////////////////////////////////
+
+// background styling for animated stars
+
+	@keyframes move-twink-back {
+	    from {background-position:0 0;}
+	    to {background-position:-10000px 5000px;}
+	}
+	@-webkit-keyframes move-twink-back {
+	    from {background-position:0 0;}
+	    to {background-position:-10000px 5000px;}
+	}
+	@-moz-keyframes move-twink-back {
+	    from {background-position:0 0;}
+	    to {background-position:-10000px 5000px;}
+	}
+	@-ms-keyframes move-twink-back {
+	    from {background-position:0 0;}
+	    to {background-position:-10000px 5000px;}
+	}
+	 
+
+	
+	@-webkit-keyframes move-clouds-back {
+	    from {
+				top: 60%;
+				left: -25%;
+				transform: rotate(0deg);
+
+	    }
+	    to {
+	    	top: 10%;
+				left: 125%;
+				transform: rotate(360deg);
+	    }
+	}
+
+.container {
+	position: relative;
+	overflow:hidden;
+	height: 100vh;
+	width: 100%;
+}
+	 
+.stars, .twinkling {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+	 
+.stars {
+  background:#000 url(../images/stars.png) repeat top center;
+  z-index:0;
+}
+	 
+.twinkling{
+  background:transparent url(../images/twinkling.png) repeat top center;
+  z-index:1;
+ 
+  -moz-animation:move-twink-back 200s linear infinite;
+  -ms-animation:move-twink-back 200s linear infinite;
+  -o-animation:move-twink-back 200s linear infinite;
+  -webkit-animation:move-twink-back 200s linear infinite;
+  animation:move-twink-back 200s linear infinite;
+}
+	 
+.clouds{
+	width: 600px;
+	height:377px;
+	background: url(../images/nebula.png)no-repeat;
+	background-size: contain;
+	z-index:35;
+	position: absolute;
+	-webkit-filter: blur(5px);
+	-moz-animation:move-clouds-back 200s linear infinite;
+	-ms-animation:move-clouds-back 200s linear infinite;
+	-o-animation:move-clouds-back 200s linear infinite;
+	-webkit-animation:move-clouds-back 200s linear infinite;
+	animation:move-clouds-back 200s linear infinite;
+}
+
+.container{
+	z-index: -100;
+}
+
+
+///////////////////////////////////////////////
+///// 		END STARRY BACKGROUND
+///////////////////////////////////////////////
+
+
 

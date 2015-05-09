@@ -3,6 +3,53 @@ jQuery(document).ready(function($) {
 //////////////////////////////////////////////////
 // GLOBAL VARIABLES
 
+// orbital animation sequence references
+// set to {repeat:-1} for continuous infinite animation
+var mercuryOrbit = new TimelineMax({repeat:-1});
+var venusOrbit = new TimelineMax({repeat:-1});
+var earthOrbit = new TimelineMax({repeat:-1});
+var marsOrbit = new TimelineMax({repeat:-1});
+var jupiterOrbit = new TimelineMax({repeat:-1});
+
+var orbitPauseStatus = false;
+var orbitArray1 = [mercuryOrbit,venusOrbit,earthOrbit,marsOrbit,jupiterOrbit];
+
+// orbital speeds
+// all planets move at different relative speeds
+var earthOrbitSpeed = 8;
+var mercuryOrbitSpeed = earthOrbitSpeed*0.243835616;
+var venusOrbitSpeed = earthOrbitSpeed*0.615619178;
+var marsOrbitSpeed = earthOrbitSpeed*1.88;
+var jupiterOrbitSpeed = earthOrbitSpeed*11.86;
+
+// all planets move at same speed
+// var earthOrbitSpeed = 35.58;
+// var otherPlanetSpeed = 3;
+// var mercuryOrbitSpeed = otherPlanetSpeed*11.86;
+// var venusOrbitSpeed = otherPlanetSpeed*11.86;
+// var marsOrbitSpeed = otherPlanetSpeed*11.86;
+// var jupiterOrbitSpeed = otherPlanetSpeed*11.86;
+
+// orbital distances (from the sun)
+// distance from sun relatively speaking
+// where Mercury is the reference value
+// to change how much of a wide circle you want the planet to travel, change mercury's value and it should update everything else
+// setting var mercuryDistance to about 150 allows it to circle tightly enough around the Sun
+var mercuryDistance = 150;
+var venusDistance = mercuryDistance*1.862068966;
+var earthDistance = mercuryDistance*2.586206897;
+var marsDistance = mercuryDistance*3.931034483;
+// if we want to keep Jupiter on screen during entire spin around sun... decrease its distance
+// var jupiterDistance = mercuryDistance*13.413793103;
+var jupiterDistance = mercuryDistance*6.413793103;
+
+// transformOrigin values
+// this is what we actually insert into the animation
+var mercury_transform_origin = "50% 50%" + " " + "-" + (mercuryDistance).toString();
+var venus_transform_origin = "50% 50%" + " " + "-" + (venusDistance).toString();
+var earth_transform_origin = "50% 50%" + " " + "-" + (earthDistance).toString();
+var mars_transform_origin = "50% 50%" + " " + "-" + (marsDistance).toString();
+var jupiter_transform_origin = "50% 50%" + " " + "-" + (jupiterDistance).toString();
 
 //////////////////////////////////////////////////
 // FUNCTIONS
@@ -210,6 +257,87 @@ function turnJupiterModalOff () {
 //on click, disappear 
 
 
+// PLANET ORBIT FUNCTIONS  ------------------------------------------------
+
+function pausePlayOrbits () {
+
+	$(window).on('click', function(event) {
+		event.preventDefault();
+		switch(orbitPauseStatus) {
+			case false:
+				// pause all orbits when the window is clicked and the var orbitPauseStatus is false
+				orbitArray1.forEach(function(element, index){
+					element.pause();
+				});
+				orbitPauseStatus = true;
+				break;
+			case true:
+				// turn on all orbits when the window is clicked and the var orbitPauseStatus is true
+				orbitArray1.forEach(function(element, index){
+					element.play();
+				});
+				orbitPauseStatus = false;
+				break;
+		}
+	});
+
+	
+}
+
+function mercuryOrbit1 () {
+	// target the planet
+	var $planetTarget = $('section.rings section#mercury');
+	console.log("This is the planet we're targeting %s",$planetTarget);
+
+	mercuryOrbit.to($planetTarget,mercuryOrbitSpeed,{rotationY:360, perspective: 200, transformOrigin:mercury_transform_origin, ease: Linear.easeNone});
+
+	mercuryOrbit.play();
+}
+
+function venusOrbit1 () {
+	// target the planet
+	var $planetTarget = $('section.rings section#venus');
+	console.log("This is the planet we're targeting %s",$planetTarget);
+
+	venusOrbit.to($planetTarget,venusOrbitSpeed,{rotationY:360, transformOrigin:venus_transform_origin, ease: Linear.easeNone});
+
+	venusOrbit.play();
+}
+
+function earthOrbit1 () {
+	// target the planet
+	var $planetTarget = $('section.rings section#earth');
+	console.log("This is the planet we're targeting %s",$planetTarget);
+
+	earthOrbit.to($planetTarget,earthOrbitSpeed,{rotationY:360, transformOrigin:earth_transform_origin, ease: Linear.easeNone});
+
+	earthOrbit.play();
+}
+
+function marsOrbit1 () {
+	// target the planet
+	var $planetTarget = $('section.rings section#mars');
+	console.log("This is the planet we're targeting %s",$planetTarget);
+
+	marsOrbit.to($planetTarget,marsOrbitSpeed,{rotationY:360, transformOrigin:mars_transform_origin, zIndex: 5, ease: Linear.easeNone});
+
+	marsOrbit.play();
+}
+
+function jupiterOrbit1 () {
+	// target the planet
+	var $planetTarget = $('section.rings section#jupiter');
+	console.log("This is the planet we're targeting %s",$planetTarget);
+
+	jupiterOrbit.to($planetTarget,jupiterOrbitSpeed,{rotationY:360, transformOrigin:jupiter_transform_origin, zIndex: 5, ease: Linear.easeNone});
+
+	jupiterOrbit.play();
+}
+
+// // END PLANET ORBIT FUNCTIONS ------------------------------------------------
+
+
+
 // HELPER FUNCTIONS
 
 function testPlanetClick () {
@@ -237,6 +365,14 @@ turnMarsModalOff();
 
 targetJupiterPlanet();
 turnJupiterModalOff();
+
+// orbits
+mercuryOrbit1();
+venusOrbit1();
+earthOrbit1();
+marsOrbit1();
+jupiterOrbit1();
+pausePlayOrbits();
 
 // click a planet and modal/lightbox pops up
 // the big modal pops into existence
