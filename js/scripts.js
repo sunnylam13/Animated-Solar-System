@@ -307,6 +307,17 @@ function pausePlayOrbits () {
 // perspective helps with a 3D look sort of... transformPerspective didn't work well for this project
 // transformOrigin was the key to creating the orbital effect of the planet around the Sun... however the planets had to be absolutely positioned so that they were vertically aligned with the centre of the sun to work... and you need to use z-offset as the thing that takes the "distance from the sun" value
 // ease is the way the animation stops and starts... does it keep going in a smooth way or start fast end slow?  for this project we wanted a smooth constant motion hence Linear.easeNone
+
+
+// ........ Issues >
+
+// Saturday, May 9, 2015 5:32 PM
+// we didn't have enough knowledge yet of animation construction to be able to get the planets to vanish behind the sun during the rotation
+// Milena suggested that one or two of the planets be given a z-index lower than the sun however after playing around we found that we couldn't click them any more... further changes haven't solved the issue and we've left it for later research
+
+// in addition because the images are 2D, eventually the planet rotates to a point it becomes almost a line (because it's flat) before it again becomes visible
+// this is why the pause/play function was needed for sure, to stop the animation at any point... users can stick click the div even if it's a thin line when it's stopped
+
 // // ...................END ANIMATION NOTES ...................
 
 function mercuryOrbit1 () {
