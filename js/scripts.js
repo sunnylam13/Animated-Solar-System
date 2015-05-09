@@ -3,7 +3,11 @@ jQuery(document).ready(function($) {
 //////////////////////////////////////////////////
 // GLOBAL VARIABLES
 
+var orbitPauseStatus = false;
+
+// ................... ANIMATION SEQUENCES...................
 // orbital animation sequence references
+// this is where we store the "animation sequence" line ups for each planet
 // set to {repeat:-1} for continuous infinite animation
 var mercuryOrbit = new TimelineMax({repeat:-1});
 var venusOrbit = new TimelineMax({repeat:-1});
@@ -11,11 +15,14 @@ var earthOrbit = new TimelineMax({repeat:-1});
 var marsOrbit = new TimelineMax({repeat:-1});
 var jupiterOrbit = new TimelineMax({repeat:-1});
 
-var orbitPauseStatus = false;
 var orbitArray1 = [mercuryOrbit,venusOrbit,earthOrbit,marsOrbit,jupiterOrbit];
+// // ...................END ANIMATION SEQUENCES ...................
 
-// orbital speeds
+// ................... ORBITAL SPEEDS...................
+// changing these affects how fast the planets spin around
+
 // all planets move at different relative speeds
+// it's less obvious or glaring that the 2D planets sort of turn into lines as the rotate
 var earthOrbitSpeed = 8;
 var mercuryOrbitSpeed = earthOrbitSpeed*0.243835616;
 var venusOrbitSpeed = earthOrbitSpeed*0.615619178;
@@ -23,6 +30,8 @@ var marsOrbitSpeed = earthOrbitSpeed*1.88;
 var jupiterOrbitSpeed = earthOrbitSpeed*11.86;
 
 // all planets move at same speed
+// this is the version where Jen suggested all planets move as slow as Jupiter
+// the issue with this was that it was obvious when all the "2D" planets turned sideways at the same time and vanished
 // var earthOrbitSpeed = 35.58;
 // var otherPlanetSpeed = 3;
 // var mercuryOrbitSpeed = otherPlanetSpeed*11.86;
@@ -30,26 +39,44 @@ var jupiterOrbitSpeed = earthOrbitSpeed*11.86;
 // var marsOrbitSpeed = otherPlanetSpeed*11.86;
 // var jupiterOrbitSpeed = otherPlanetSpeed*11.86;
 
-// orbital distances (from the sun)
-// distance from sun relatively speaking
-// where Mercury is the reference value
+// // ...................END ORBITAL SPEEDS ...................
+
+
+// ................... ORBITAL DISTANCES...................
+// this is a kind of rough distance from the sun
+// it tells the animation how wide a spin from the central vertical axis to go from... right now that central vertical axis is smack down the through the middle of the sun like a shishkebab
+
+// where Mercury is the reference value... which means that the distance from the vertical axis is a multiple of mercury's distance allowing us to change one value to change them all at the same time...
+// and keep everything space out without having to change each planet individually
+
 // to change how much of a wide circle you want the planet to travel, change mercury's value and it should update everything else
 // setting var mercuryDistance to about 150 allows it to circle tightly enough around the Sun
+
 var mercuryDistance = 150;
 var venusDistance = mercuryDistance*1.862068966;
 var earthDistance = mercuryDistance*2.586206897;
 var marsDistance = mercuryDistance*3.931034483;
-// if we want to keep Jupiter on screen during entire spin around sun... decrease its distance
 // var jupiterDistance = mercuryDistance*13.413793103;
+
+// if we want to keep Jupiter on screen during entire spin around sun... decrease its distance... by creating a custom value and commenting out the previous one
 var jupiterDistance = mercuryDistance*6.413793103;
 
-// transformOrigin values
-// this is what we actually insert into the animation
+// // ...................END ORBITAL DISTANCES ...................
+
+
+// ................... TRANSFORM ORIGIN VALUES...................
+// this is subbed into the animation "commands" 
+// placed here to make it easy to change the orbital "width" or how far the planets circle away from the Sun
+
 var mercury_transform_origin = "50% 50%" + " " + "-" + (mercuryDistance).toString();
 var venus_transform_origin = "50% 50%" + " " + "-" + (venusDistance).toString();
 var earth_transform_origin = "50% 50%" + " " + "-" + (earthDistance).toString();
 var mars_transform_origin = "50% 50%" + " " + "-" + (marsDistance).toString();
 var jupiter_transform_origin = "50% 50%" + " " + "-" + (jupiterDistance).toString();
+
+// // ...................END TRANSFORM ORIGIN VALUES ...................
+
+
 
 //////////////////////////////////////////////////
 // FUNCTIONS
@@ -68,8 +95,11 @@ function showModal1 () {
 	});
 }
 
-//click the planet mercury, pop up modal 
+// PLANET MODAL ENTRIES
+// click the planet, make the modal entry pop up 
+// click the modal entry, and the modal vanishes
 
+// ................... MERCURY...................
 function targetMercuryPlanet () {
 	// who are we targeting?  we want mercury planet
 	// then we store our targeting coordinates into a variable
@@ -133,7 +163,9 @@ function turnMercuryModalOff () {
 	});
 	
 }
+// // ...................END MERCURY ...................
 
+// ................... VENUS...................
 function targetVenusPlanet () {
 	var $venusPlanet = $('.planet.venus');
 
@@ -157,7 +189,9 @@ function turnVenusModalOff () {
 		$('.big.modal').hide();
 	});
 }
+// // ...................END VENUS ...................
 
+// ................... EARTH...................
 function targetEarthPlanet () {
 	var $earthPlanet = $('.planet.earth');
 
@@ -181,31 +215,9 @@ function turnEarthModalOff () {
 		$('.big.modal').hide();
 	});
 }
+// // ...................END EARTH ...................
 
-function targetEarthPlanet () {
-	var $earthPlanet = $('.planet.earth');
-
-	$earthPlanet.on('click', function() {
-		var planetName = $(this).attr('id');
-
-		$('section.big.modal').css('z-index','50');
-		$('.big.modal').css('display','flex');
-
-	var finalTarget = "." + planetName + "Modal";
-		console.log(finalTarget);
-		$(finalTarget).css('display','flex');
-
-	});
-}
-function turnMarsModalOff () {
-	$('.marsModal').on('click', function(){
-		$('.marsModal').css('display','none');
-
-		$('section.big.modal').css('display','none');
-		$('.big.modal').hide();
-	});
-}
-
+// ................... MARS...................
 function targetMarsPlanet () {
 	var $marsPlanet = $('.planet.mars');
 
@@ -229,7 +241,9 @@ function turnMarsModalOff () {
 		$('.big.modal').hide();
 	});
 }
+// // ...................END MARS ...................
 
+// ................... JUPITER...................
 function targetJupiterPlanet () {
 	var $jupiterPlanet = $('.planet.jupiter');
 
@@ -253,11 +267,15 @@ function turnJupiterModalOff () {
 		$('.big.modal').hide();
 	});
 }
+// // ...................END JUPITER ...................
 
-//on click, disappear 
 
 
 // PLANET ORBIT FUNCTIONS  ------------------------------------------------
+
+// ................... PAUSE/PLAY PLANET ORBITS...................
+// when you click on the window you switch the pause status variable switch from "false" to "true" (or "off" to "on")...  
+// when you click the window again you do the reverse
 
 function pausePlayOrbits () {
 
@@ -280,9 +298,16 @@ function pausePlayOrbits () {
 				break;
 		}
 	});
-
-	
 }
+// // ...................END PAUSE/PLAY PLANET ORBITS ...................
+
+// ................... ANIMATION NOTES...................
+// the animation works by setting up a storage tube like mercuryOrbit and we stick an animation into it...
+// rotationY means spin the element 360 degrees
+// perspective helps with a 3D look sort of... transformPerspective didn't work well for this project
+// transformOrigin was the key to creating the orbital effect of the planet around the Sun... however the planets had to be absolutely positioned so that they were vertically aligned with the centre of the sun to work... and you need to use z-offset as the thing that takes the "distance from the sun" value
+// ease is the way the animation stops and starts... does it keep going in a smooth way or start fast end slow?  for this project we wanted a smooth constant motion hence Linear.easeNone
+// // ...................END ANIMATION NOTES ...................
 
 function mercuryOrbit1 () {
 	// target the planet
@@ -350,10 +375,14 @@ function testPlanetClick () {
 //////////////////////////////////////////////////
 // EXECUTION CODE
 
+// testPlanetClick();
+
+// click a planet and modal/lightbox pops up
+// the big modal pops into existence
+
 targetMercuryPlanet();
 turnMercuryModalOff();
 
-// testPlanetClick();
 targetVenusPlanet();
 turnVenusModalOff();
 
@@ -373,11 +402,6 @@ earthOrbit1();
 marsOrbit1();
 jupiterOrbit1();
 pausePlayOrbits();
-
-// click a planet and modal/lightbox pops up
-// the big modal pops into existence
-
-
 
 //////////////////////////////////////////////////
 

@@ -4,22 +4,10 @@
 ///// 		IMPORTS
 ///////////////////////////////////////////////
 
-// @import url(./_normalize.scss);
-// @import url(./_responsive.scss);
-// @import url(./columns.scss);
-// @import url(./grid.scss);
-
 @import 'normalize';
 @import 'grid';
 @import 'responsive';
-// @import 'variables.global.041415.1';
 @import 'columns';
-
-// the _ threw off the import
-// @import '_normalize.scss';
-// @import '_responsive.scss';
-// @import 'columns.scss';
-// @import 'grid.scss';
 
 ///////////////////////////////////////////////
 ///// 		END IMPORTS
@@ -29,19 +17,7 @@
 ///// 		SETUP
 ///////////////////////////////////////////////
 
-// article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */
-// input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
-
-// .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
-
-// * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-
-
-///////////////////////////////////////////////
-///// 		END SETUP
-///////////////////////////////////////////////
-
-
+// normalize code was imported above
 
 body{
 	// position: relative;
@@ -50,6 +26,14 @@ body{
 
 	background: black;
 }
+
+///////////////////////////////////////////////
+///// 		END SETUP
+///////////////////////////////////////////////
+
+////////////////////////////////////////////
+///// 		GENERAL
+///////////////////////////////////////////////
 
 section.rings {
 	position: relative;
@@ -73,6 +57,13 @@ section.rings {
 	font-weight: 300;
 }
 
+
+///////////////////////////////////////////////
+///// 		END GENERAL
+///////////////////////////////////////////////
+
+
+
 ////////////////////////////////////////////
 ///// 		SUN
 ///////////////////////////////////////////////
@@ -80,18 +71,7 @@ section.rings {
 section.rings section.sun {
 	margin:0;
 	padding:0;
-	// border: 5px solid orange;
 	position: absolute;
-
-	// non-flexbox centre method
-	// top: 50%;
-	// top: calc(50% - 100px);
-	// left: calc(50% - 100px);
-	// top: 50%;
-	// transform: translateY(-50%);
-
-	// width: 100%;
-	// height: 100vh;
 	
 	top:0;
 	right:0;
@@ -107,6 +87,7 @@ section.rings section.sun {
 	align-items: center;
 
 	img#sunImage {
+		// if Prepros is used or another preprocessor with AutoPrefixr CSS enabled, vendor prefixes will be handled
 		-webkit-filter: blur(5px);
 	}
 }
@@ -126,74 +107,27 @@ section.rings section.sun {
 	position: absolute;
 }
 
-// .planet.mercury .big.modal {
-// 	position: absolute;
-// 	top: 40%;
-// 	left: 40%;
-	
-// 	// top:0;
-// 	// bottom:0;
-// 	// left:0;
-// 	// right:0;
-
-// 	// TESTING
-// 	background: lightblue;
-// 	width: 250px;
-// 	height: 250px;
-// 	width: 100%;
-// 	height: 100vh;
-
-// 	// flexbox
-// 	// display:flex;
-// 	// flex-flow: row no-wrap;
-// 	// justify-content:center;
-// 	// align-content:center;
-// 	// align-items: flex-start;
-// 	.image{
-// 		width: 70%;
-// 		// max-width: 100%;
-// 		float: left;
-// 	}
-// 	.hiddenText{
-// 		width: 30%;
-// 	}
-
-// }
-
-
 .planet.mercury {
-	top: 30%;
-	left: 53%;
-
 	// values from original though aligned along the vertical axis
 	top: 30%;
 	left: 49%;
 }
 
 .planet.venus {
-	top: 48%;
-	left: 71%;
-
 	// values from original though aligned along the vertical axis
+	// required for the orbital animations to work
+	// we want the planets nearly aligned vertically along the sun's vertical axis
 	top: 48%;
 	left: 47%;
 
-	// .small img {
-	// 	width: 75px;
-	// }
 }
 
 .planet.earth {
-	top: 22%;
-	left: 69%;
-
 	// values from original though aligned along the vertical axis
+	// required for the orbital animations to work
+	// we want the planets nearly aligned vertically along the sun's vertical axis
 	top: 22%;
 	left: 47%;
-
-	// .small img {
-	// 	width: 100px;
-	// }
 }
 
 .planet.mars {
@@ -201,28 +135,18 @@ section.rings section.sun {
 	left: 79%;
 
 	// values from original though aligned along the vertical axis
+	// required for the orbital animations to work
+	// we want the planets nearly aligned vertically along the sun's vertical axis
 	top: 31%;
 	left: 47%;
-
-	// .small img {
-	// 	width: 150px;
-	// }
 }
 
 .planet.jupiter {
-	// top: 21%;
-	// left: 89%;
-
-	top: 0;
-	left: 77%;
-
 	// values from original though aligned along the vertical axis
+	// required for the orbital animations to work
+	// we want the planets nearly aligned vertically along the sun's vertical axis
 	top: 21%;
 	left: 44%;
-
-	// .small img {
-	// 	width: 25px;
-	// }
 }
 
 // // END PLANETS ------------------------------------------------
@@ -235,13 +159,16 @@ section.rings section.sun {
 
 section.big.modal {
 	// positioned relative to the body
+	// this is the outer modal which holds the planet modal entries
 	position: absolute;
 	top:0;
 	bottom:0;
 	right:0;
 	left:0;
 
-	// apply flexbox to the big modal to centre each of the modal entries
+	// flexbox
+	// apply flexbox to the big modal to centre each of the modal entries both horizontally and vertically
+	// since we've stretched the big modal already it sort of has a height so vertical centring with flexbox will work
 	display:flex;
 	flex-flow: column;
 	justify-content: center;
@@ -264,14 +191,11 @@ section.big.modal section {
 	align-content:center;
 	align-items:center;
 
-
-	// margin: 5% 10% 10% 10%;
 	width: 80%;
-
-	// position: relative;
 
 	// DEFAULT DISPLAY STATUS
 	// in jQuery we will change the visibility of the modal
+	// we want all our planet modal entries to be hidden until made visible with a jQuery click event
 	display: none;
 
 
@@ -288,10 +212,6 @@ section.big.modal section {
 		}
 	}
 
-	&.jupiterModal {}
-
-	
-
 	.hiddenText {
 		flex: 1 30%;
 		margin: 0 auto;
@@ -304,21 +224,24 @@ section.big.modal section {
 			text-align: center;
 		}
 	}
-
-	// span.fa.fa-close {
-	// 	position: absolute;
-	// 	top: 0;
-	// 	right:0;
-
-	// 	border: 1px solid orange;
-	// 	border-radius: 50%;
-	// 	padding: 0.5%;
-	// }
 }
 
-// section.big.modal section:nth-child {
-// 	display:flex;
-// }
+// Style Each of the Planet Modals  ------------------------------------------------
+
+// general styling of all the text in each of the planet modal entries
+.hiddenText {
+	font-size: 18px;
+	color:#fff;
+	font-weight: 300;
+	font-family: 'Open Sans', sans-serif;
+
+	h2{
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		font-size: 36px;
+		font-family: 'Oswald', sans-serif;
+	}
+}
 
 section.big.modal section.jupiterModal, section.big.modal section.marsModal{
 	.image{
@@ -326,19 +249,7 @@ section.big.modal section.jupiterModal, section.big.modal section.marsModal{
 	}
 }
 
-.hiddenText {
-		font-size: 18px;
-		color:#fff;
-		font-weight: 300;
-		font-family: 'Open Sans', sans-serif;
 
-		h2{
-			text-transform: uppercase;
-			letter-spacing: 2px;
-			font-size: 36px;
-			font-family: 'Oswald', sans-serif;
-		}
-	}
 
 section.big.modal section.venusModal{
 	.hiddenText{
@@ -380,9 +291,17 @@ section.big.modal section.earthModal {
 }
 
 
+// // END Style Each of the Planet Modals ------------------------------------------------
+
+
+
 ///////////////////////////////////////////////
 ///// 		END MODALS
 ///////////////////////////////////////////////
+
+
+
+
 
 ////////////////////////////////////////////
 ///// 		STARRY BACKGROUND
@@ -390,44 +309,52 @@ section.big.modal section.earthModal {
 
 // background styling for animated stars
 
-	@keyframes move-twink-back {
-	    from {background-position:0 0;}
-	    to {background-position:-10000px 5000px;}
-	}
-	@-webkit-keyframes move-twink-back {
-	    from {background-position:0 0;}
-	    to {background-position:-10000px 5000px;}
-	}
-	@-moz-keyframes move-twink-back {
-	    from {background-position:0 0;}
-	    to {background-position:-10000px 5000px;}
-	}
-	@-ms-keyframes move-twink-back {
-	    from {background-position:0 0;}
-	    to {background-position:-10000px 5000px;}
-	}
-	 
+// ................... TWINKLING STARS...................
+// CSS keyframe animation for the twinkling star effect
+@keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+// // ...................END TWINKLING STARS ...................
 
-	
-	@-webkit-keyframes move-clouds-back {
-	    from {
-				top: 60%;
-				left: -25%;
-				transform: rotate(0deg);
 
-	    }
-	    to {
-	    	top: 10%;
-				left: 125%;
-				transform: rotate(360deg);
-	    }
-	}
+
+// ................... ROLLING NEBULA...................
+// CSS keyframe animation for the rolling nebula
+@-webkit-keyframes move-clouds-back {
+    from {
+			top: 60%;
+			left: -25%;
+			transform: rotate(0deg);
+
+    }
+    to {
+    	top: 10%;
+			left: 125%;
+			transform: rotate(360deg);
+    }
+}
+// // ...................END ROLLING NEBULA ...................
+
 
 .container {
 	position: relative;
 	overflow:hidden;
 	height: 100vh;
 	width: 100%;
+	z-index: -100;
 }
 	 
 .stars, .twinkling {
@@ -471,11 +398,6 @@ section.big.modal section.earthModal {
 	-webkit-animation:move-clouds-back 200s linear infinite;
 	animation:move-clouds-back 200s linear infinite;
 }
-
-.container{
-	z-index: -100;
-}
-
 
 ///////////////////////////////////////////////
 ///// 		END STARRY BACKGROUND
